@@ -19,27 +19,27 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // Иконка
-                Icon(
+                const Icon(
                   Icons.recycling,
                   size: 200,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 // Приветствие
-                Text(
+                const Text(
                   'Welcome back!',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 36),
                 ),
 
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
 
-                Text(
+                const Text(
                   'Sign in your account!',
                   style: TextStyle(fontSize: 20),
                 ),
 
-                SizedBox(height: 35),
+                const SizedBox(height: 35),
 
                 // Мыло
                 Padding(
@@ -49,8 +49,8 @@ class _LoginPageState extends State<LoginPage> {
                         color: Colors.grey[200],
                         border: Border.all(color: Colors.white),
                         borderRadius: BorderRadius.circular(16)),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
+                    child: const Padding(
+                      padding: EdgeInsets.only(left: 10.0),
                       child: TextField(
                         decoration: InputDecoration(
                           border: InputBorder.none,
@@ -61,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
 
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
 
                 // Пароль
                 Padding(
@@ -71,8 +71,8 @@ class _LoginPageState extends State<LoginPage> {
                         color: Colors.grey[200],
                         border: Border.all(color: Colors.white),
                         borderRadius: BorderRadius.circular(16)),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
+                    child: const Padding(
+                      padding: EdgeInsets.only(left: 10.0),
                       child: TextField(
                         obscureText: true,
                         decoration: InputDecoration(
@@ -84,14 +84,14 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
 
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
 
                 //Забыл пароль
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 35),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
+                    children: const [
                       Text(
                         'Forgot your Password?',
                         style: TextStyle(
@@ -103,17 +103,17 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
 
-                SizedBox(height: 100),
+                const SizedBox(height: 100),
 
                 // Войти
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: Container(
-                    padding: EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
                         color: Colors.deepPurple,
                         borderRadius: BorderRadius.circular(16)),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         'Sign In',
                         style: TextStyle(
@@ -126,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
 
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
 
                 // Регалка
                 Row(
@@ -136,7 +136,7 @@ class _LoginPageState extends State<LoginPage> {
                       'Not a member? ',
                       style: TextStyle(color: Colors.grey[700]),
                     ),
-                    Text(
+                    const Text(
                       'Sign up now!',
                       style: TextStyle(
                           color: Colors.blue, fontWeight: FontWeight.bold),
