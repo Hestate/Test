@@ -146,13 +146,13 @@
       "languageVersion": "2.14"
     },
     {
-      "name": "prilojuha_dlya_dimona",
+      "name": "auth_app",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     }
   ],
-  "generated": "2022-07-01T15:34:55.503236Z",
+  "generated": "2022-07-01T16:02:58.526275Z",
   "generator": "pub",
   "generatorVersion": "2.17.5"
 }
