@@ -18,7 +18,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Иконка
+// Иконка
                 const Icon(
                   Icons.recycling,
                   size: 200,
@@ -26,29 +26,29 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(
                   height: 50,
                 ),
-                // Приветствие
+// Приветствие
                 const Text(
                   'Welcome back!',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 36),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 36,
+                  ),
                 ),
-
                 const SizedBox(height: 10),
-
                 const Text(
                   'Sign in your account!',
                   style: TextStyle(fontSize: 20),
                 ),
-
                 const SizedBox(height: 35),
-
-                // Мыло
+// Мыло
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: Container(
                     decoration: BoxDecoration(
-                        color: Colors.grey[200],
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(16)),
+                      color: Colors.grey[200],
+                      border: Border.all(color: Colors.white),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
                     child: const Padding(
                       padding: EdgeInsets.only(left: 10.0),
                       child: TextField(
@@ -60,17 +60,16 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-
                 const SizedBox(height: 10),
-
-                // Пароль
+// Пароль
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: Container(
                     decoration: BoxDecoration(
-                        color: Colors.grey[200],
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(16)),
+                      color: Colors.grey[200],
+                      border: Border.all(color: Colors.white),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
                     child: const Padding(
                       padding: EdgeInsets.only(left: 10.0),
                       child: TextField(
@@ -83,10 +82,8 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-
                 const SizedBox(height: 15),
-
-                //Забыл пароль
+//Забыл пароль
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 35),
                   child: Row(
@@ -95,24 +92,24 @@ class _LoginPageState extends State<LoginPage> {
                       Text(
                         'Forgot your Password?',
                         style: TextStyle(
-                            color: Colors.blue,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14),
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                        ),
                       ),
                     ],
                   ),
                 ),
-
                 const SizedBox(height: 100),
-
-                // Войти
+// Войти
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: Container(
                     padding: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
-                        color: Colors.deepPurple,
-                        borderRadius: BorderRadius.circular(16)),
+                      color: Colors.deepPurple,
+                      borderRadius: BorderRadius.circular(16),
+                    ),
                     child: const Center(
                       child: Text(
                         'Sign In',
@@ -125,21 +122,23 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-
                 const SizedBox(height: 10),
-
-                // Регалка
+// Регалка
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       'Not a member? ',
-                      style: TextStyle(color: Colors.grey[700]),
+                      style: TextStyle(
+                        color: Colors.grey[700],
+                      ),
                     ),
                     const Text(
                       'Sign up now!',
                       style: TextStyle(
-                          color: Colors.blue, fontWeight: FontWeight.bold),
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
