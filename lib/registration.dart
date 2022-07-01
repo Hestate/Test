@@ -18,14 +18,9 @@ class _SignUpPageState extends State<SignUpPage> {
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
 // Иконка
-              const Icon(
-                Icons.recycling,
-                size: 200,
-              ),
-              const SizedBox(
-                height: 50,
-              ),
-              // Приветствие
+              const Icon(Icons.recycling, size: 200),
+              const SizedBox(height: 50),
+// Приветствие
               const Text(
                 'Welcome!',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 36),

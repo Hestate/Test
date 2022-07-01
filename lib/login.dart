@@ -19,13 +19,8 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
 // Иконка
-                const Icon(
-                  Icons.recycling,
-                  size: 200,
-                ),
-                const SizedBox(
-                  height: 50,
-                ),
+                const Icon(Icons.recycling, size: 200),
+                const SizedBox(height: 50),
 // Приветствие
                 const Text(
                   'Welcome back!',
