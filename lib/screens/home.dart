@@ -1,7 +1,3 @@
-//2 вкладки
-//1 апи с любого источника
-//2 даннные и дата регистрации
-
 import 'package:auth_app/home_pages/home_page.dart';
 import 'package:auth_app/home_pages/profile_page.dart';
 import 'package:flutter/material.dart';
