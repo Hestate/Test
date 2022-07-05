@@ -14,8 +14,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int currentPage = 0;
   List<Widget> pages = [
-    HomePage(),
-    ProfilePage(),
+    const HomePage(),
+    const ProfilePage(),
   ];
   @override
   Widget build(BuildContext context) {

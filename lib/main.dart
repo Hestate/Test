@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'screens/home.dart';
 import 'screens/login.dart';
 import 'screens/registration.dart';
-import 'screens/home.dart';
 
 void main() {
   runApp(const MyApp());
