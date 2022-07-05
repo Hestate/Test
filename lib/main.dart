@@ -1,6 +1,9 @@
+import 'package:auth_app/home_pages/home_page.dart';
 import 'package:flutter/material.dart';
-import 'login.dart';
-import 'registration.dart';
+import 'screens/home.dart';
+import 'screens/login.dart';
+import 'screens/registration.dart';
+import 'screens/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: SignUpPage(),
+      home: HomeScreen(),
     );
   }
 }
