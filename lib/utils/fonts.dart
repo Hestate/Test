@@ -1,58 +1,60 @@
-import 'package:auth_app/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'colors.dart';
 
 class AppTypography {
   const AppTypography._();
 
+  static const String _bebas = 'Bebas';
+
   static const _color = AppColors.black;
 
-  static const String _appFonts = 'App Fonts';
-
-  static const font14 = TextStyle(
+  static final font14 = TextStyle(
     color: _color,
+    fontFamily: _bebas,
     fontStyle: FontStyle.normal,
-    fontFamily: _appFonts,
     fontWeight: FontWeight.normal,
-    fontSize: 14,
+    fontSize: 14.sp,
   );
 
-    static const font14g = TextStyle(
+  static final font14g = TextStyle(
     color: AppColors.grey700,
+    fontFamily: _bebas,
     fontStyle: FontStyle.normal,
-    fontFamily: _appFonts,
     fontWeight: FontWeight.normal,
-    fontSize: 14,
+    fontSize: 14.sp,
   );
 
-  static const font14bb = TextStyle(
+  static final font14bb = TextStyle(
     color: AppColors.blue,
+    fontFamily: _bebas,
     fontStyle: FontStyle.normal,
-    fontFamily: _appFonts,
     fontWeight: FontWeight.bold,
-    fontSize: 14,
+    fontSize: 14.sp,
   );
 
-  static const font18wb = TextStyle(
+  static final font18wb = TextStyle(
     color: AppColors.white,
+    fontFamily: _bebas,
     fontStyle: FontStyle.normal,
-    fontFamily: _appFonts,
     fontWeight: FontWeight.bold,
-    fontSize: 18,
+    fontSize: 18.sp,
   );
 
-  static const font20 = TextStyle(
+  static final font20 = TextStyle(
     color: _color,
+    fontFamily: _bebas,
     fontStyle: FontStyle.normal,
-    fontFamily: _appFonts,
     fontWeight: FontWeight.normal,
-    fontSize: 20,
+    fontSize: 20.sp,
   );
 
-  static const font36b = TextStyle(
+  static final font72b = TextStyle(
     color: _color,
+    fontFamily: _bebas,
     fontStyle: FontStyle.normal,
-    fontFamily: _appFonts,
     fontWeight: FontWeight.bold,
-    fontSize: 36,
+    fontSize: 72.sp,
   );
 }

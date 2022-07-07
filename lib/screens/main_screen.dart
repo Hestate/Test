@@ -1,21 +1,20 @@
-import 'package:auth_app/home_pages/home_page.dart';
-import 'package:auth_app/home_pages/profile_page.dart';
 import 'package:flutter/material.dart';
-import 'package:auth_app/utils/colors.dart';
-import 'package:auth_app/utils/fonts.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+import 'home_screen.dart';
+import 'profile_screen.dart';
+
+class MainScreen extends StatefulWidget {
+  const MainScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<MainScreen> createState() => _MainScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _MainScreenState extends State<MainScreen> {
   int currentPage = 0;
   List<Widget> pages = [
-    const HomePage(),
-    const ProfilePage(),
+    const HomeScreen(),
+    const ProfileScreen(),
   ];
   @override
   Widget build(BuildContext context) {

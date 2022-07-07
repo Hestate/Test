@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+
 import '../utils/colors.dart';
 import '../utils/fonts.dart';
 
-class ProfilePage extends StatefulWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<ProfilePage> createState() => _ProfilePageState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,12 +20,12 @@ class _ProfilePageState extends State<ProfilePage> {
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Icon(Icons.person_outline, size: 200),
-                SizedBox(height: 50),
+              children: [
+                const Icon(Icons.home_outlined, size: 200),
+                const SizedBox(height: 50),
                 Text(
-                  'Profile',
-                  style: AppTypography.font36b,
+                  'Home',
+                  style: AppTypography.font72b,
                 ),
               ],
             ),
