@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:auth_app/utils/colors.dart';
 import 'package:auth_app/screens/registration_screen.dart';
+import '../screens/login_screen.dart';
 import '../utils/fonts.dart';
 
 Widget welcomeField() {
@@ -236,14 +237,14 @@ Widget signInText(BuildContext context) {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          'Not a member? ',
+          'Already registered? ',
           style: AppTypography.font14g,
         ),
         GestureDetector(
           onTap: (() {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: ((context) => const RegScreen()),
+                builder: ((context) => const LogScreen()),
               ),
             );
           }),
