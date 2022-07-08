@@ -22,19 +22,19 @@ class _LogScreenState extends State<LogScreen> {
               child: IntrinsicHeight(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    welcomeField(),
-                    const Spacer(
+                  children: const [
+                    WelcomeField(),
+                    Spacer(
                       flex: 1,
                     ),
-                    loginField(),
-                    passwordField(),
-                    forgotPass(context),
-                    const Spacer(
+                    LoginField(),
+                    PasswordField(),
+                    ForgotPassField(),
+                    Spacer(
                       flex: 1,
                     ),
-                    signInButton(),
-                    signUpText(context),
+                    SignInButton(),
+                    SignUpText(),
                   ],
                 ),
               ),

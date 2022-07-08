@@ -22,20 +22,20 @@ class _RegScreenState extends State<RegScreen> {
               child: IntrinsicHeight(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    welcomeField(),
-                    const Spacer(
+                  children: const [
+                    WelcomeField(),
+                    Spacer(
                       flex: 1,
                     ),
-                    loginField(),
-                    nameField(),
-                    passwordField(),
-                    confirmPasswordField(),
-                    const Spacer(
+                    LoginField(),
+                    NameField(),
+                    PasswordField(),
+                    ConfirmPassField(),
+                    Spacer(
                       flex: 1,
                     ),
-                    signUpButton(),
-                    signInText(context),
+                    SignUpButton(),
+                    SignInText(),
                   ],
                 ),
               ),
