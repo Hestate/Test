@@ -1,9 +1,5 @@
-import 'package:auth_app/screens/home_screen.dart';
-import 'package:auth_app/screens/main_screen.dart';
-import 'package:auth_app/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'screens/login_screen.dart';
 
 void main() {
@@ -23,7 +19,7 @@ class MyApp extends StatelessWidget {
         return const MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Test',
-          home: RegScreen(),
+          home: LogScreen(),
         );
       },
     );

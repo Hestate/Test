@@ -21,11 +21,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.person_outline, size: 200),
-                SizedBox(height: 50),
+                const Icon(Icons.person_outline, size: 200),
+                const SizedBox(height: 50),
                 Text(
                   'Profile',
-                  style: AppTypography.font72b,
+                  style: AppTypography.font56b,
                 ),
               ],
             ),

@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 50),
                 Text(
                   'Home',
-                  style: AppTypography.font72b,
+                  style: AppTypography.font56b,
                 ),
               ],
             ),

@@ -50,11 +50,11 @@ class AppTypography {
     fontSize: 20.sp,
   );
 
-  static final font72b = TextStyle(
+  static final font56b = TextStyle(
     color: _color,
     fontFamily: _bebas,
     fontStyle: FontStyle.normal,
     fontWeight: FontWeight.bold,
-    fontSize: 72.sp,
+    fontSize: 56.sp,
   );
 }
