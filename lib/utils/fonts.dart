@@ -3,9 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'colors.dart';
 
-class AppTypography {
-  const AppTypography._();
-
+abstract class AppTypography {
   static const String _bebas = 'Bebas';
 
   static const _color = AppColors.black;
