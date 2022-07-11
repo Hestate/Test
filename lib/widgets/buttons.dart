@@ -18,7 +18,7 @@ class SignInButton extends StatelessWidget {
           onTap: (() {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: ((context) => MainScreen()),
+                builder: ((context) => const MainScreen()),
               ),
             );
           }),
@@ -54,7 +54,7 @@ class SignUpButton extends StatelessWidget {
           onTap: (() {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: ((context) => LoginScreen()),
+                builder: ((context) => const LoginScreen()),
               ),
             );
           }),

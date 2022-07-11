@@ -5,9 +5,7 @@ import '../screens/registration_screen.dart';
 import '../utils/fonts.dart';
 
 class WelcomeText extends StatelessWidget {
-  const WelcomeText({
-    Key? key,
-  }) : super(key: key);
+  const WelcomeText({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +28,7 @@ class WelcomeText extends StatelessWidget {
 }
 
 class WelcomeBackText extends StatelessWidget {
-  const WelcomeBackText({
-    Key? key,
-  }) : super(key: key);
+  const WelcomeBackText({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -142,7 +138,7 @@ class SignInText extends StatelessWidget {
             onTap: (() {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: ((context) => LoginScreen()),
+                  builder: ((context) => const LoginScreen()),
                 ),
               );
             }),

@@ -1,42 +1,35 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
-import '../pages/home_screen.dart';
-import '../pages/profile_screen.dart';
-import '../screens/registration_screen.dart';
+import '../pages/home_page.dart';
+import '../pages/profile_page.dart';
 import '../utils/colors.dart';
 import 'buttons.dart';
 import 'fields.dart';
 import 'texts.dart';
-
-export 'buttons.dart';
-export 'fields.dart';
-export 'texts.dart';
 
 class LoginScreenWidget extends StatelessWidget {
   const LoginScreenWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      child: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, constraints) => SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(minHeight: constraints.maxHeight),
-              child: IntrinsicHeight(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    WelcomeBackText(),
-                    Spacer(flex: 1),
-                    LoginField(),
-                    ForgotPassField(),
-                    Spacer(flex: 1),
-                    SignInButton(),
-                    SignUpText(),
-                  ],
-                ),
+    return SafeArea(
+      child: LayoutBuilder(
+        builder: (context, constraints) => SingleChildScrollView(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(minHeight: constraints.maxHeight),
+            child: IntrinsicHeight(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  WelcomeBackText(),
+                  Spacer(flex: 1),
+                  LoginField(),
+                  ForgotPassField(),
+                  Spacer(flex: 1),
+                  SignInButton(),
+                  SignUpText(),
+                ],
               ),
             ),
           ),
@@ -51,24 +44,22 @@ class RegistrationScreenWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      child: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, constraints) => SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(minHeight: constraints.maxHeight),
-              child: IntrinsicHeight(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    WelcomeText(),
-                    Spacer(flex: 1),
-                    RegField(),
-                    Spacer(flex: 1),
-                    SignUpButton(),
-                    SignInText(),
-                  ],
-                ),
+    return SafeArea(
+      child: LayoutBuilder(
+        builder: (context, constraints) => SingleChildScrollView(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(minHeight: constraints.maxHeight),
+            child: IntrinsicHeight(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  WelcomeText(),
+                  Spacer(flex: 1),
+                  RegField(),
+                  Spacer(flex: 1),
+                  SignUpButton(),
+                  SignInText(),
+                ],
               ),
             ),
           ),
@@ -89,13 +80,13 @@ class MainScreenWidgetState extends State<MainScreenWidget> {
   int _page = 0;
 
   List<Widget> pages = [
-    const HomeScreen(),
-    const ProfileScreen(),
+    const HomePage(),
+    const ProfilePage(),
   ];
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   final screens = [
-    const HomeScreen(),
-    const RegScreen(),
+    const HomePage(),
+    const ProfilePage(),
   ];
   @override
   Widget build(BuildContext context) {
