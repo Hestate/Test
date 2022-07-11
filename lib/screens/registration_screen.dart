@@ -1,7 +1,7 @@
+import 'package:auth_app/widgets/fields.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/colors.dart';
-import '../widgets/widgets.dart';
 
 class RegScreen extends StatelessWidget {
   const RegScreen({Key? key}) : super(key: key);
@@ -10,7 +10,7 @@ class RegScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: AppColors.grey300,
-      body: RegistrationScreenWidget(),
+      body: RegistrationField(),
     );
   }
 }

@@ -1,7 +1,7 @@
+import 'package:auth_app/widgets/fields.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/colors.dart';
-import '../widgets/widgets.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -10,7 +10,9 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: AppColors.grey300,
-      body: LoginScreenWidget(),
+      body: SafeArea(
+        child: LoginField(),
+      ),
     );
   }
 }
