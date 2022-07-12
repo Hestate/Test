@@ -1,8 +1,8 @@
-import '../User/person_model.dart';
+import '../user/person_model.dart';
 import 'person_database_helper.dart';
 
 Future<bool> checkCredentials(String login, String password) async {
-  bool value = true;
+  bool value = false;
   PersonDatabaseHelper person = PersonDatabaseHelper();
 
   var info = await person.getPerson(login);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../User/person_model.dart';
+import '../user/person_model.dart';
 import '../auth/person_database_helper.dart';
 import '../auth/validation_functions.dart';
 import '../screens/login_screen.dart';
@@ -149,6 +149,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     PersonDatabaseHelper person = PersonDatabaseHelper();
                     await person.initializeDatabase();
                     await person.insertPerson(personObject);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text("You're sucsefully registered!"),
+                      ),
+                    );
                     Navigator.push(
                       context,
                       MaterialPageRoute(

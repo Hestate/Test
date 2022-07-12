@@ -1,4 +1,4 @@
-import '../User/person_model.dart';
+import '../user/person_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 import 'dart:io';
