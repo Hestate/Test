@@ -14,21 +14,15 @@ class Person {
   String get password => _password!;
 
   set login(String newLogin) {
-    if (newLogin != null) {
-      this._login = newLogin;
-    }
+    _login = newLogin;
   }
 
   set email(String newEmail) {
-    if (newEmail != null) {
-      this._email = newEmail;
-    }
+    _email = newEmail;
   }
 
   set password(String newPassword) {
-    if (newPassword != null) {
-      this._password = newPassword;
-    }
+    _password = newPassword;
   }
 
   Map<String, dynamic> toMap() {

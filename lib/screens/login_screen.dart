@@ -137,12 +137,12 @@ class _LoginScreenState extends State<LoginScreen> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => MainScreen(),
+                                  builder: (context) => const MainScreen(),
                                 ),
                               );
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
+                                const SnackBar(
                                   content:
                                       Text("User not found. Please sign up."),
                                 ),

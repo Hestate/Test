@@ -35,7 +35,7 @@ class PersonDatabaseHelper {
 
     Directory directory = await getApplicationDocumentsDirectory();
 
-    String path = directory.path + 'person.db';
+    String path = '${directory.path}person.db';
 
     // Open or create database at a given path.
     var personDatabase =
