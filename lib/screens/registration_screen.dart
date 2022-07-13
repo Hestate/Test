@@ -151,14 +151,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     await person.initializeDatabase();
                     await person.insertPerson(personObject);
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
+                      const SnackBar(
                         content: Text("You're sucsefully registered!"),
                       ),
                     );
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => LoginScreen(),
+                        builder: (context) => const LoginScreen(),
                       ),
                     );
                   }

@@ -33,7 +33,7 @@ class MainScreenState extends State<MainScreen> {
         backgroundColor: AppColors.deepPurple,
         title: const Text('Home Page'),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: AppColors.white),
+          icon: const Icon(Icons.arrow_back, color: AppColors.white),
           onPressed: () => Navigator.push(
             context,
             MaterialPageRoute(

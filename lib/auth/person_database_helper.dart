@@ -19,17 +19,13 @@ class PersonDatabaseHelper {
   PersonDatabaseHelper._createInstance();
   factory PersonDatabaseHelper() {
     //initializing the object
-    if (_personDatabaseHelper == null) {
-      _personDatabaseHelper = PersonDatabaseHelper._createInstance();
-    }
+    _personDatabaseHelper ??= PersonDatabaseHelper._createInstance();
     return _personDatabaseHelper!;
   }
 
   // Getter for our database
   Future<Database> get database async {
-    if (_database == null) {
-      _database = await initializeDatabase();
-    }
+    _database ??= await initializeDatabase();
     return _database!;
   }
 
@@ -64,7 +60,7 @@ class PersonDatabaseHelper {
 
   //Fetch operation
   Future<List<Map<String, dynamic>>> getPerson(String login) async {
-    Database db = await this.database;
+    Database db = await database;
 
     var result = await db.rawQuery(
         'SELECT * FROM $personTable WHERE $personLogin = \'$login\' ');
@@ -73,7 +69,7 @@ class PersonDatabaseHelper {
 
   // Insert Operation
   Future<int> insertPerson(Person person) async {
-    Database db = await this.database;
+    Database db = await database;
 
     var result = await db.insert(personTable, person.toMap());
     print("Person details inserted in the $personTable.");
@@ -83,7 +79,7 @@ class PersonDatabaseHelper {
 
   // Update Operation
   Future<int> updatePerson(Person person) async {
-    Database db = await this.database;
+    Database db = await database;
 
     //var result = await db.rawUpdate(sql)
     var result = await db.update(personTable, person.toMap(),
@@ -95,7 +91,7 @@ class PersonDatabaseHelper {
 
   // Delete Operation
   Future<int> deletePerson(String login) async {
-    Database db = await this.database;
+    Database db = await database;
 
     var result = await db
         .rawDelete('DELETE FROM $personTable WHERE $personLogin = $login');
