@@ -8,16 +8,16 @@ Future<bool> checkCredentials(String login, String password) async {
   var info = await person.getPerson(login);
 
   List<Person> listPerson = [];
-  for (var element in info) {
+  info.forEach((element) {
     Person personObj = Person.fromMapObject(element);
     listPerson.add(personObj);
-  }
+  });
 
-  for (var element in listPerson) {
+  listPerson.forEach((element) {
     if (element.login == login && element.password == password) {
       value = true;
     }
-  }
+  });
 
   return value;
 }
@@ -29,10 +29,10 @@ getList(List<Person> listPerson) async {
   PersonDatabaseHelper person = PersonDatabaseHelper();
   var info = await person.getPerson(login1!);
 
-  for (var element in info) {
+  info.forEach((element) {
     Person personObj = Person.fromMapObject(element);
     listPerson.add(personObj);
-  }
+  });
 }
 
 Future<List<String>> getInfoList(String login) async {
@@ -40,21 +40,21 @@ Future<List<String>> getInfoList(String login) async {
   var info = await person.getPerson(login);
 
   List<Person> listPerson = [];
-  for (var element in info) {
+  info.forEach((element) {
     Person personObj = Person.fromMapObject(element);
     listPerson.add(personObj);
-  }
+  });
 
   List<String> personInfoList = [];
 
-  for (var element in listPerson) {
+  listPerson.forEach((element) {
     login1 = element.login;
     personInfoList.add(login1!);
     email = element.email;
     personInfoList.add(email!);
     password = element.password;
     personInfoList.add(password!);
-  }
+  });
 
   print(personInfoList);
 

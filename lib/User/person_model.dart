@@ -14,28 +14,34 @@ class Person {
   String get password => _password!;
 
   set login(String newLogin) {
-    _login = newLogin;
+    if (newLogin != null) {
+      this._login = newLogin;
+    }
   }
 
   set email(String newEmail) {
-    _email = newEmail;
+    if (newEmail != null) {
+      this._email = newEmail;
+    }
   }
 
   set password(String newPassword) {
-    _password = newPassword;
+    if (newPassword != null) {
+      this._password = newPassword;
+    }
   }
 
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{};
 
-    map['Login'] = _login;
+    map['login'] = _login;
     map['email'] = _email;
     map['password'] = _password;
     return map;
   }
 
   Person.fromMapObject(Map<String, dynamic> map) {
-    _login = map['Login'];
+    _login = map['login'];
     _email = map['email'];
     _password = map['password'];
   }

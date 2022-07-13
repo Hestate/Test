@@ -6,7 +6,6 @@ import '../auth/validation_functions.dart';
 import '../screens/registration_screen.dart';
 import '../utils/decorations.dart';
 import '../utils/fonts.dart';
-import '../utils/string_constants.dart';
 import 'main_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -128,17 +127,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     print(person);
                     SharedPreferences prefs =
                         await SharedPreferences.getInstance();
-                    prefs.setBool(StringConstant.login, true);
-                    prefs.setString(StringConstant.login, loginController.text);
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const MainScreen(),
+                        builder: (context) => MainScreen(
+                          dataList: person,
+                        ),
                       ),
                     );
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
+                      SnackBar(
                         content: Text("User not found. Please sign up."),
                       ),
                     );
