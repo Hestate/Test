@@ -22,12 +22,12 @@ validatePassword(String value) {
     return "Password is required.";
   }
   String pattern =
-      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
+      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[,.<>?-_=+№%!@#$%^&*;:()/|\$&*~]).{8,}$';
   RegExp regExp = RegExp(pattern);
-
-  if (!regExp.hasMatch(value)) {
-    return "Password must contain atleast 1 uppercase min. 1 lowercase, 1 special character, min. 1 numeric char.";
-  } else if (value.length < 8) {
+  if (value.length < 8) {
     return "Password should atleast be of 8 characters.";
+  }
+  if (!regExp.hasMatch(value)) {
+    return "Password must contain atleast 1 uppercase, 1 lowercase, 1 special and 1 numeric character.";
   }
 }
