@@ -94,6 +94,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       controller: passController,
                       obscureText: true,
                       decoration: const InputDecoration(
+                        errorMaxLines: 3,
                         border: InputBorder.none,
                         hintText: 'Password',
                       ),
