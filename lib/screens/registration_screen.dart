@@ -25,7 +25,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     final node = FocusScope.of(context);
-    
+
     return Scaffold(
       backgroundColor: AppColors.grey300,
       body: SafeArea(
@@ -41,12 +41,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(0, 50, 0, 5),
                         child: Text(
-                          'Welcome!',
+                          'Welcome here!',
                           style: AppTypography.font56b,
                         ),
                       ),
                       Text(
-                        'Sign up in your account!',
+                        'Sign up your account!',
                         style: AppTypography.font28,
                       ),
                       const Spacer(flex: 1),
