@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../auth/authentication_functions.dart';
 import '../auth/validation_functions.dart';
 import '../screens/registration_screen.dart';
+import '../utils/colors.dart';
 import '../utils/decorations.dart';
 import '../utils/fonts.dart';
 import 'main_screen.dart';
@@ -25,17 +26,15 @@ class _LoginScreenState extends State<LoginScreen> {
     final node = FocusScope.of(context);
 
     return Scaffold(
-      body: Form(
-        key: _formKey,
+      backgroundColor: AppColors.grey300,
+      body: SafeArea(
         child: Column(
           children: [
-            Form(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(0, 50, 0, 5),
-                child: Text(
-                  'Welcome back!',
-                  style: AppTypography.font56b,
-                ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 50, 0, 5),
+              child: Text(
+                'Welcome back!',
+                style: AppTypography.font56b,
               ),
             ),
             Text(
@@ -43,23 +42,26 @@ class _LoginScreenState extends State<LoginScreen> {
               style: AppTypography.font20,
             ),
             const Spacer(flex: 1),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(25, 5, 25, 5),
-              child: Container(
-                decoration: AppFieldBoxDecoration.fieldDecoration,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: TextFormField(
-                    controller: loginController,
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Login',
+            Form(
+              key: _formKey,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(25, 5, 25, 5),
+                child: Container(
+                  decoration: AppFieldBoxDecoration.fieldDecoration,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: TextFormField(
+                      controller: loginController,
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Login',
+                      ),
+                      validator: (value) {
+                        return validateLogin(value!);
+                      },
+                      textInputAction: TextInputAction.next,
+                      onEditingComplete: () => node.nextFocus(),
                     ),
-                    validator: (value) {
-                      return validateLogin(value!);
-                    },
-                    textInputAction: TextInputAction.next,
-                    onEditingComplete: () => node.nextFocus(),
                   ),
                 ),
               ),
@@ -130,9 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => MainScreen(
-                          dataList: person,
-                        ),
+                        builder: (context) => MainScreen(),
                       ),
                     );
                   } else {

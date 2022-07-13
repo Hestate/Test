@@ -7,8 +7,7 @@ import '../pages/profile_page.dart';
 import '../utils/colors.dart';
 
 class MainScreen extends StatefulWidget {
-  final List<String> dataList;
-  MainScreen({required this.dataList});
+  const MainScreen({Key? key}) : super(key: key);
 
   @override
   MainScreenState createState() => MainScreenState();

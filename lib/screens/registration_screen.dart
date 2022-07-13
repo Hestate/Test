@@ -4,6 +4,7 @@ import '../user/person_model.dart';
 import '../auth/person_database_helper.dart';
 import '../auth/validation_functions.dart';
 import '../screens/login_screen.dart';
+import '../utils/colors.dart';
 import '../utils/decorations.dart';
 import '../utils/fonts.dart';
 
@@ -25,9 +26,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   Widget build(BuildContext context) {
     final node = FocusScope.of(context);
     return Scaffold(
-      body: Center(
-        child: Form(
-          key: _formKey,
+      backgroundColor: AppColors.grey300,
+      body: SafeArea(
+        child: Center(
           child: Column(
             children: [
               Padding(
@@ -42,23 +43,26 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 style: AppTypography.font20,
               ),
               const Spacer(flex: 1),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(25, 5, 25, 5),
-                child: Container(
-                  decoration: AppFieldBoxDecoration.fieldDecoration,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: TextFormField(
-                      controller: loginController,
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Login',
+              Form(
+                key: _formKey,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(25, 5, 25, 5),
+                  child: Container(
+                    decoration: AppFieldBoxDecoration.fieldDecoration,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: TextFormField(
+                        controller: loginController,
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Login',
+                        ),
+                        validator: (value) {
+                          return validateLogin(value!);
+                        },
+                        textInputAction: TextInputAction.next,
+                        onEditingComplete: () => node.nextFocus(),
                       ),
-                      validator: (value) {
-                        return validateLogin(value!);
-                      },
-                      textInputAction: TextInputAction.next,
-                      onEditingComplete: () => node.nextFocus(),
                     ),
                   ),
                 ),
