@@ -28,7 +28,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     return Scaffold(
       backgroundColor: AppColors.grey300,
       body: SafeArea(
-        child: Center(
+        child: Form(
+          key: _formKey,
           child: Column(
             children: [
               Padding(
@@ -40,29 +41,26 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               ),
               Text(
                 'Sign up in your account!',
-                style: AppTypography.font20,
+                style: AppTypography.font28,
               ),
               const Spacer(flex: 1),
-              Form(
-                key: _formKey,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(25, 5, 25, 5),
-                  child: Container(
-                    decoration: AppFieldBoxDecoration.fieldDecoration,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: TextFormField(
-                        controller: loginController,
-                        decoration: const InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Login',
-                        ),
-                        validator: (value) {
-                          return validateLogin(value!);
-                        },
-                        textInputAction: TextInputAction.next,
-                        onEditingComplete: () => node.nextFocus(),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(25, 5, 25, 5),
+                child: Container(
+                  decoration: AppFieldBoxDecoration.fieldDecoration,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: TextFormField(
+                      controller: loginController,
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Login',
                       ),
+                      validator: (value) {
+                        return validateLogin(value!);
+                      },
+                      textInputAction: TextInputAction.next,
+                      onEditingComplete: () => node.nextFocus(),
                     ),
                   ),
                 ),
@@ -175,7 +173,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     child: Center(
                       child: Text(
                         'Sign Up',
-                        style: AppTypography.font18wb,
+                        style: AppTypography.font22wb,
                       ),
                     ),
                   ),
@@ -188,7 +186,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   children: [
                     Text(
                       'Already registered? ',
-                      style: AppTypography.font14g,
+                      style: AppTypography.font18g,
                     ),
                     GestureDetector(
                       onTap: (() {
@@ -200,7 +198,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       }),
                       child: Text(
                         'Sign In now!',
-                        style: AppTypography.font14bb,
+                        style: AppTypography.font18bb,
                       ),
                     ),
                   ],

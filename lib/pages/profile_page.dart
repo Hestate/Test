@@ -24,7 +24,7 @@ class ProfilePage extends StatelessWidget {
             ),
             Text(
               'Username',
-              style: AppTypography.font20,
+              style: AppTypography.font28,
             ),
             const Spacer(flex: 2),
             Padding(

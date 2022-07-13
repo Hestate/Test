@@ -28,23 +28,23 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       backgroundColor: AppColors.grey300,
       body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 50, 0, 5),
-              child: Text(
-                'Welcome back!',
-                style: AppTypography.font56b,
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 50, 0, 5),
+                child: Text(
+                  'Welcome back!',
+                  style: AppTypography.font56b,
+                ),
               ),
-            ),
-            Text(
-              'Sign in your account!',
-              style: AppTypography.font20,
-            ),
-            const Spacer(flex: 1),
-            Form(
-              key: _formKey,
-              child: Padding(
+              Text(
+                'Sign in your account!',
+                style: AppTypography.font28,
+              ),
+              const Spacer(flex: 1),
+              Padding(
                 padding: const EdgeInsets.fromLTRB(25, 5, 25, 5),
                 child: Container(
                   decoration: AppFieldBoxDecoration.fieldDecoration,
@@ -65,125 +65,125 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(25, 5, 25, 5),
-              child: Container(
-                decoration: AppFieldBoxDecoration.fieldDecoration,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: TextFormField(
-                    controller: passwordController,
-                    obscureText: true,
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Password',
-                    ),
-                    validator: (value) {
-                      return validatePassword(value!);
-                    },
-                    onEditingComplete: () => node.unfocus(),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(25, 10, 25, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  GestureDetector(
-                    child: Text(
-                      'Forgot your Password?',
-                      style: AppTypography.font14bb,
-                    ),
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (_) => AlertDialog(
-                          title: const Text('Really?'),
-                          content: const Text('Thats bad mate'),
-                          actions: [
-                            TextButton(
-                              onPressed: () => Navigator.pop(context, 'Okay'),
-                              child: const Text('Okay'),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  )
-                ],
-              ),
-            ),
-            const Spacer(flex: 1),
-            GestureDetector(
-              onTap: () async {
-                if (_formKey.currentState!.validate()) {
-                  bool credentialExists = await checkCredentials(
-                      loginController.text.toString(),
-                      passwordController.text.toString());
-                  if (credentialExists) {
-                    List<String> person =
-                        await getPersonList(loginController.text.toString());
-                    print(person);
-                    SharedPreferences prefs =
-                        await SharedPreferences.getInstance();
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => MainScreen(),
-                      ),
-                    );
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text("User not found. Please sign up."),
-                      ),
-                    );
-                  }
-                }
-              },
-              child: Padding(
+              Padding(
                 padding: const EdgeInsets.fromLTRB(25, 5, 25, 5),
                 child: Container(
-                  padding: const EdgeInsets.all(15),
-                  decoration: AppButtonBoxDecoration.buttonDecoration,
-                  child: Center(
-                    child: Text(
-                      'Sign In',
-                      style: AppTypography.font18wb,
+                  decoration: AppFieldBoxDecoration.fieldDecoration,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: TextFormField(
+                      controller: passwordController,
+                      obscureText: true,
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Password',
+                      ),
+                      validator: (value) {
+                        return validatePassword(value!);
+                      },
+                      onEditingComplete: () => node.unfocus(),
                     ),
                   ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(25, 10, 25, 50),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Not a member? ',
-                    style: AppTypography.font14g,
-                  ),
-                  GestureDetector(
-                    onTap: (() {
-                      Navigator.of(context).push(
+              Padding(
+                padding: const EdgeInsets.fromLTRB(25, 10, 25, 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    GestureDetector(
+                      child: Text(
+                        'Forgot your Password?',
+                        style: AppTypography.font18bb,
+                      ),
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (_) => AlertDialog(
+                            title: const Text('Really?'),
+                            content: const Text('Thats bad mate'),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(context, 'Okay'),
+                                child: const Text('Okay'),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    )
+                  ],
+                ),
+              ),
+              const Spacer(flex: 1),
+              GestureDetector(
+                onTap: () async {
+                  if (_formKey.currentState!.validate()) {
+                    bool credentialExists = await checkCredentials(
+                        loginController.text.toString(),
+                        passwordController.text.toString());
+                    if (credentialExists) {
+                      List<String> person =
+                          await getPersonList(loginController.text.toString());
+                      print(person);
+                      SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+                      Navigator.pushReplacement(
+                        context,
                         MaterialPageRoute(
-                          builder: ((context) => const RegistrationScreen()),
+                          builder: (context) => MainScreen(),
                         ),
                       );
-                    }),
-                    child: Text(
-                      'Sign Up now!',
-                      style: AppTypography.font14bb,
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("User not found. Please sign up."),
+                        ),
+                      );
+                    }
+                  }
+                },
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(25, 5, 25, 5),
+                  child: Container(
+                    padding: const EdgeInsets.all(15),
+                    decoration: AppButtonBoxDecoration.buttonDecoration,
+                    child: Center(
+                      child: Text(
+                        'Sign In',
+                        style: AppTypography.font22wb,
+                      ),
                     ),
                   ),
-                ],
+                ),
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.fromLTRB(25, 10, 25, 50),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Not a member? ',
+                      style: AppTypography.font18g,
+                    ),
+                    GestureDetector(
+                      onTap: (() {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: ((context) => const RegistrationScreen()),
+                          ),
+                        );
+                      }),
+                      child: Text(
+                        'Sign Up now!',
+                        style: AppTypography.font18bb,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

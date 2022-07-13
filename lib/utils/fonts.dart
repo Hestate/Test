@@ -8,44 +8,44 @@ abstract class AppTypography {
 
   static const _color = AppColors.black;
 
-  static final font14 = TextStyle(
+  static final font18 = TextStyle(
     color: _color,
     fontFamily: _bebas,
     fontStyle: FontStyle.normal,
     fontWeight: FontWeight.normal,
-    fontSize: 14.sp,
+    fontSize: 18.sp,
   );
 
-  static final font14g = TextStyle(
+  static final font18g = TextStyle(
     color: AppColors.grey700,
     fontFamily: _bebas,
     fontStyle: FontStyle.normal,
     fontWeight: FontWeight.normal,
-    fontSize: 14.sp,
+    fontSize: 18.sp,
   );
 
-  static final font14bb = TextStyle(
+  static final font18bb = TextStyle(
     color: AppColors.blue,
-    fontFamily: _bebas,
-    fontStyle: FontStyle.normal,
-    fontWeight: FontWeight.bold,
-    fontSize: 14.sp,
-  );
-
-  static final font18wb = TextStyle(
-    color: AppColors.white,
     fontFamily: _bebas,
     fontStyle: FontStyle.normal,
     fontWeight: FontWeight.bold,
     fontSize: 18.sp,
   );
 
-  static final font20 = TextStyle(
+  static final font22wb = TextStyle(
+    color: AppColors.white,
+    fontFamily: _bebas,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.bold,
+    fontSize: 22.sp,
+  );
+
+  static final font28 = TextStyle(
     color: _color,
     fontFamily: _bebas,
     fontStyle: FontStyle.normal,
     fontWeight: FontWeight.normal,
-    fontSize: 20.sp,
+    fontSize: 28.sp,
   );
 
   static final font56b = TextStyle(
