@@ -1,13 +1,15 @@
 import 'package:auth_app/screens/login_screen.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../pages/home_page.dart';
 import '../pages/profile_page.dart';
 import '../utils/colors.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  final List<String> dataList;
+  MainScreen({required this.dataList});
 
   @override
   MainScreenState createState() => MainScreenState();
@@ -32,15 +34,19 @@ class MainScreenState extends State<MainScreen> {
       appBar: AppBar(
         backgroundColor: AppColors.deepPurple,
         title: const Text('Home Page'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: AppColors.white),
-          onPressed: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const LoginScreen(),
-            ),
-          ),
-        ),
+          leading: InkWell(
+              onTap: () async {
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                prefs.setBool('Sign in', false);
+                prefs.setString('login', "");
+
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => LoginScreen()));
+              },
+              child: Icon(
+                Icons.logout,
+                color: Colors.white,
+              )),
       ),
       body: pages[_page],
       bottomNavigationBar: CurvedNavigationBar(

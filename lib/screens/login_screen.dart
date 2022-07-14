@@ -134,10 +134,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               print(person);
                               SharedPreferences prefs =
                                   await SharedPreferences.getInstance();
+                                  prefs.setBool('Sign in', true);
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const MainScreen(),
+                                  builder: (context) => MainScreen(
+                                    dataList: person,
+                                  ),
                                 ),
                               );
                             } else {
@@ -157,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             decoration: AppButtonBoxDecoration.buttonDecoration,
                             child: Center(
                               child: Text(
-                                'Sign In',
+                                'Sign in',
                                 style: AppTypography.font22wb,
                               ),
                             ),

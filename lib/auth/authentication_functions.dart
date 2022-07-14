@@ -22,12 +22,12 @@ Future<bool> checkCredentials(String login, String password) async {
   return value;
 }
 
-String? login1;
+String? login;
 String? email;
 String? password;
 getList(List<Person> listPerson) async {
   PersonDatabaseHelper person = PersonDatabaseHelper();
-  var info = await person.getPerson(login1!);
+  var info = await person.getPerson(login!);
 
   for (var element in info) {
     Person personObj = Person.fromMapObject(element);
@@ -48,8 +48,8 @@ Future<List<String>> getInfoList(String login) async {
   List<String> personInfoList = [];
 
   for (var element in listPerson) {
-    login1 = element.login;
-    personInfoList.add(login1!);
+    login = element.login;
+    personInfoList.add(login);
     email = element.email;
     personInfoList.add(email!);
     password = element.password;
