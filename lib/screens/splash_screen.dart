@@ -1,12 +1,11 @@
-import 'package:auth_app/screens/login_screen.dart';
-import 'package:auth_app/screens/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:auth_app/auth/authentication_functions.dart';
-import '../auth/prerences.dart';
-import 'package:auth_app/auth/person_database_helper.dart';
 
+import '../auth/authentication_functions.dart';
+import '../auth/prerences.dart';
 import '../utils/colors.dart';
+import 'login_screen.dart';
+import 'main_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   SplashScreen({Key? key}) : super(key: key);

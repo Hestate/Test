@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../user/person_model.dart';
 import '../auth/person_database_helper.dart';
 import '../auth/validation_functions.dart';
 import '../screens/login_screen.dart';
+import '../user/person_model.dart';
 import '../utils/colors.dart';
 import '../utils/decorations.dart';
 import '../utils/fonts.dart';

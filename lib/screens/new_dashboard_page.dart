@@ -1,6 +1,7 @@
-import 'package:auth_app/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'login_screen.dart';
 
 class DashboardPage extends StatefulWidget {
   final String data;
