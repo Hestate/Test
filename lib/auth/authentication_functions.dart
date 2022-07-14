@@ -56,8 +56,6 @@ Future<List<String>> getInfoList(String login) async {
     personInfoList.add(password!);
   }
 
-  print(personInfoList);
-
   return personInfoList;
 }
 

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'screens/login_screen.dart';
+import 'screens/main_screen.dart';
+import 'screens/registration_screen.dart';
 import 'screens/splash_screen.dart';
-
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +23,13 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Test',
-          home: SplashScreen(),
+          initialRoute: '/SS',
+          routes: {
+            '/SS': (context) => const SplashScreen(),
+            '/LS': (context) => const LoginScreen(),
+            '/RS': (context) => const RegistrationScreen(),
+            '/MS': (context) => const MainScreen(dataList: []),
+          },
         );
       },
     );

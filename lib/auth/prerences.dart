@@ -2,23 +2,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Preferences {
-  static Future<SharedPreferences>? _prefs = SharedPreferences.getInstance();
-  static SharedPreferences? _prefsInstance;
-
-  static bool _initCalled = false;
-
-  static Future<void> init() async {
-    _initCalled = true;
-    _prefsInstance = await _prefs;
-    print("init called");
-  }
-
-  static void dispose() {
-    _prefs = null;
-    _prefsInstance = null;
-    print("Dispose called");
-  }
-
   static Future<int> getInt(String key, int value) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getInt(key) ?? value;

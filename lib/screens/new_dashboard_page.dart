@@ -1,7 +1,6 @@
+import 'package:auth_app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'login_screen.dart';
 
 class DashboardPage extends StatefulWidget {
   final String data;
@@ -25,35 +24,32 @@ class _DashboardPageState extends State<DashboardPage> {
               prefs.setBool('Sign in', false);
               prefs.setString('login', "");
 
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()));
+              Navigator.pushNamed(context, '/LS');
             },
-            child: Icon(
+            child: const Icon(
               Icons.logout,
               color: Colors.white,
             )),
         centerTitle: true,
-        backgroundColor: Color.fromRGBO(27, 213, 210, 10),
-        title: Text(
+        backgroundColor: AppColors.grey300,
+        title: const Text(
           "Dashboard",
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
-      body: Container(
-        child: Center(
-            child: Column(
-          children: [
-            Text(
-              "Welcome! ${widget.data}",
-              style: TextStyle(color: Colors.teal, fontWeight: FontWeight.bold),
-            ),
-            Text(
-              widget.dataList.toString(),
-              style: TextStyle(color: Colors.teal, fontWeight: FontWeight.bold),
-            ),
-          ],
-        )),
-      ),
+      body: Center(
+          child: Column(
+        children: [
+          Text(
+            "Welcome! ${widget.data}",
+            style: const TextStyle(color: Colors.teal, fontWeight: FontWeight.bold),
+          ),
+          Text(
+            widget.dataList.toString(),
+            style: const TextStyle(color: Colors.teal, fontWeight: FontWeight.bold),
+          ),
+        ],
+      )),
     );
   }
 }

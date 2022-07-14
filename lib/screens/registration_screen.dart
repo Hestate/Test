@@ -164,12 +164,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                 content: Text("You're sucsefully registered!"),
                               ),
                             );
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const LoginScreen(),
-                              ),
-                            );
+                            Navigator.pushNamed(context, '/LS');
                           }
                         },
                         child: Padding(

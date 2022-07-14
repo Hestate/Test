@@ -7,7 +7,6 @@ import '../screens/registration_screen.dart';
 import '../utils/colors.dart';
 import '../utils/decorations.dart';
 import '../utils/fonts.dart';
-import 'main_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -129,20 +128,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                 loginController.text.toString(),
                                 passwordController.text.toString());
                             if (credentialExists) {
-                              List<String> person = await getPersonList(
-                                  loginController.text.toString());
-                              print(person);
                               SharedPreferences prefs =
                                   await SharedPreferences.getInstance();
                                   prefs.setBool('Sign in', true);
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => MainScreen(
-                                    dataList: person,
-                                  ),
-                                ),
-                              );
+                              Navigator.pushNamed(context, '/MS');
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(

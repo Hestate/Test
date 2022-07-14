@@ -5,11 +5,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../pages/home_page.dart';
 import '../pages/profile_page.dart';
 import '../utils/colors.dart';
-import 'login_screen.dart';
 
 class MainScreen extends StatefulWidget {
   final List<String> dataList;
-  MainScreen({required this.dataList});
+  const MainScreen({required this.dataList});
 
   @override
   MainScreenState createState() => MainScreenState();
@@ -40,10 +39,9 @@ class MainScreenState extends State<MainScreen> {
                 prefs.setBool('Sign in', false);
                 prefs.setString('login', "");
 
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()));
+                Navigator.pushNamed(context, '/LS');
               },
-              child: Icon(
+              child: const Icon(
                 Icons.logout,
                 color: Colors.white,
               )),
