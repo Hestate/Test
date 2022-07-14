@@ -23,7 +23,6 @@ class _DashboardPageState extends State<DashboardPage> {
               SharedPreferences prefs = await SharedPreferences.getInstance();
               prefs.setBool('Sign in', false);
               prefs.setString('login', "");
-
               Navigator.pushNamed(context, '/LS');
             },
             child: const Icon(
@@ -42,11 +41,13 @@ class _DashboardPageState extends State<DashboardPage> {
         children: [
           Text(
             "Welcome! ${widget.data}",
-            style: const TextStyle(color: Colors.teal, fontWeight: FontWeight.bold),
+            style: const TextStyle(
+                color: Colors.teal, fontWeight: FontWeight.bold),
           ),
           Text(
             widget.dataList.toString(),
-            style: const TextStyle(color: Colors.teal, fontWeight: FontWeight.bold),
+            style: const TextStyle(
+                color: Colors.teal, fontWeight: FontWeight.bold),
           ),
         ],
       )),

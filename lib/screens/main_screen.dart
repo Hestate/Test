@@ -33,18 +33,17 @@ class MainScreenState extends State<MainScreen> {
       appBar: AppBar(
         backgroundColor: AppColors.deepPurple,
         title: const Text('Home Page'),
-          leading: InkWell(
-              onTap: () async {
-                SharedPreferences prefs = await SharedPreferences.getInstance();
-                prefs.setBool('Sign in', false);
-                prefs.setString('login', "");
-
-                Navigator.pushNamed(context, '/LS');
-              },
-              child: const Icon(
-                Icons.logout,
-                color: Colors.white,
-              )),
+        leading: InkWell(
+            onTap: () async {
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              prefs.setBool('Sign in', false);
+              prefs.setString('login', "");
+              Navigator.pushNamed(context, '/LS');
+            },
+            child: const Icon(
+              Icons.logout,
+              color: Colors.white,
+            )),
       ),
       body: pages[_page],
       bottomNavigationBar: CurvedNavigationBar(
