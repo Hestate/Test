@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
             '/SS': (context) => const SplashScreen(),
             '/LS': (context) => const LoginScreen(),
             '/RS': (context) => const RegistrationScreen(),
-            '/MS': (context) => const MainScreen(dataList: []),
+            '/MS': (context) => const MainScreen(),
           },
         );
       },
