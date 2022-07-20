@@ -1,19 +1,19 @@
-import '../user/person_model.dart';
-import 'person_database_helper.dart';
+import 'package:auth_app/auth/person_database_helper.dart';
+import 'package:auth_app/user/person_model.dart';
 
 Future<bool> checkCredentials(String login, String password) async {
-  bool value = false;
-  PersonDatabaseHelper person = PersonDatabaseHelper();
+  var value = false;
+  final person = PersonDatabaseHelper();
 
-  var info = await person.getPerson(login);
+  final info = await person.getPerson(login);
 
-  List<Person> listPerson = [];
-  for (var element in info) {
-    Person personObj = Person.fromMapObject(element);
+  final listPerson = <Person>[];
+  for (final element in info) {
+    final personObj = Person.fromMapObject(element);
     listPerson.add(personObj);
   }
 
-  for (var element in listPerson) {
+  for (final element in listPerson) {
     if (element.login == login && element.password == password) {
       value = true;
     }
@@ -25,29 +25,31 @@ Future<bool> checkCredentials(String login, String password) async {
 String? login;
 String? email;
 String? password;
-getList(List<Person> listPerson) async {
-  PersonDatabaseHelper person = PersonDatabaseHelper();
-  var info = await person.getPerson(login!);
+Future<List<Person>> getList(List<Person> listPerson) async {
+  final person = PersonDatabaseHelper();
+  final info = await person.getPerson(login!);
 
-  for (var element in info) {
-    Person personObj = Person.fromMapObject(element);
+  for (final element in info) {
+    final personObj = Person.fromMapObject(element);
     listPerson.add(personObj);
   }
+
+  return listPerson;
 }
 
 Future<List<String>> getInfoList(String login) async {
-  PersonDatabaseHelper person = PersonDatabaseHelper();
-  var info = await person.getPerson(login);
+  final person = PersonDatabaseHelper();
+  final info = await person.getPerson(login);
 
-  List<Person> listPerson = [];
-  for (var element in info) {
-    Person personObj = Person.fromMapObject(element);
+  final listPerson = <Person>[];
+  for (final element in info) {
+    final personObj = Person.fromMapObject(element);
     listPerson.add(personObj);
   }
 
-  List<String> personInfoList = [];
+  final personInfoList = <String>[];
 
-  for (var element in listPerson) {
+  for (final element in listPerson) {
     login = element.login;
     personInfoList.add(login);
     email = element.email;
@@ -60,7 +62,6 @@ Future<List<String>> getInfoList(String login) async {
 }
 
 Future<List<String>> getPersonList(String login) async {
-  List<String> personList;
-  personList = await getInfoList(login);
+  final personList = await getInfoList(login);
   return personList;
 }

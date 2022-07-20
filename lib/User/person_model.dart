@@ -1,13 +1,19 @@
 class Person {
-  String? _login;
-  String? _email;
-  String? _password;
 
   Person(
     this._login,
     this._email,
     this._password,
   );
+
+  Person.fromMapObject(Map<String, dynamic> map) {
+    _login = map['login'] as String;
+    _email = map['email']as String;
+    _password = map['password']as String;
+  }
+  String? _login;
+  String? _email;
+  String? _password;
 
   String get login => _login!;
   String get email => _email!;
@@ -26,18 +32,12 @@ class Person {
   }
 
   Map<String, dynamic> toMap() {
-    var map = <String, dynamic>{};
+    final map = <String, dynamic>{};
 
     map['login'] = _login;
     map['email'] = _email;
     map['password'] = _password;
     return map;
-  }
-
-  Person.fromMapObject(Map<String, dynamic> map) {
-    _login = map['login'];
-    _email = map['email'];
-    _password = map['password'];
   }
 
 }

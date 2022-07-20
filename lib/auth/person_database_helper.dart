@@ -1,5 +1,6 @@
+// ignore_for_file: always_use_package_imports
+
 import 'dart:async';
-import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -7,7 +8,15 @@ import 'package:sqflite/sqflite.dart';
 import '../user/person_model.dart';
 
 
+
 class PersonDatabaseHelper {
+  factory PersonDatabaseHelper() {
+    //initializing the object
+    _personDatabaseHelper ??= PersonDatabaseHelper._createInstance();
+    return _personDatabaseHelper!;
+  }
+
+  PersonDatabaseHelper._createInstance();
   static PersonDatabaseHelper?
       _personDatabaseHelper; //Singleton object of the class
 
@@ -17,13 +26,6 @@ class PersonDatabaseHelper {
   String personLogin = 'login';
   String personEmail = 'email';
   String personPassword = 'password';
-
-  PersonDatabaseHelper._createInstance();
-  factory PersonDatabaseHelper() {
-    //initializing the object
-    _personDatabaseHelper ??= PersonDatabaseHelper._createInstance();
-    return _personDatabaseHelper!;
-  }
 
   // Getter for our database
   Future<Database> get database async {
@@ -35,14 +37,13 @@ class PersonDatabaseHelper {
   Future<Database> initializeDatabase() async {
     // Getting directory path for both Android and Ios
 
-    Directory directory = await getApplicationDocumentsDirectory();
+    final directory = await getApplicationDocumentsDirectory();
 
-    String path = '${directory.path}person.db';
+    final path = '${directory.path}person.db';
 
     // Open or create database at a given path.
-    var personDatabase =
+    final personDatabase =
         await openDatabase(path, version: 1, onCreate: _createDb);
-    print("Database Created");
 
     // _createDb(personDatabase, 1);
     // print("Table created");
@@ -51,10 +52,10 @@ class PersonDatabaseHelper {
   }
 
   // Function for creating a Database,
-  void _createDb(Database db, int newVersion) async {
+  Future<void> _createDb(Database db, int newVersion) async {
     if (_database == null) {
       await db.execute(
-          'CREATE TABLE personsTable ($personLogin TEXT PRIMARY KEY, $personEmail TEXT, $personPassword VARCHAR)');
+          'CREATE TABLE personsTable ($personLogin TEXT PRIMARY KEY, $personEmail TEXT, $personPassword VARCHAR)',);
     }
   }
 
@@ -62,30 +63,28 @@ class PersonDatabaseHelper {
 
   //Fetch operation
   Future<List<Map<String, dynamic>>> getPerson(String login) async {
-    Database db = await database;
+    final db = await database;
 
-    var result = await db.rawQuery(
-        'SELECT * FROM $personTable WHERE $personLogin = \'$login\' ');
+    final result = await db.rawQuery(
+        "SELECT * FROM $personTable WHERE $personLogin = '$login' ",);
     return result;
   }
 
   // Insert Operation
   Future<int> insertPerson(Person person) async {
-    Database db = await database;
+    final db = await database;
 
-    var result = await db.insert(personTable, person.toMap());
-    print("Person details inserted in the $personTable.");
-    print("$personTable contains $result records.");
+    final result = await db.insert(personTable, person.toMap());
     return result;
   }
 
   // Update Operation
   Future<int> updatePerson(Person person) async {
-    Database db = await database;
+    final db = await database;
 
     //var result = await db.rawUpdate(sql)
-    var result = await db.update(personTable, person.toMap(),
-        where: '$personLogin = ?', whereArgs: [person.login]);
+    final result = await db.update(personTable, person.toMap(),
+        where: '$personLogin = ?', whereArgs: [person.login],);
     return result;
   }
 
@@ -93,9 +92,9 @@ class PersonDatabaseHelper {
 
   // Delete Operation
   Future<int> deletePerson(String login) async {
-    Database db = await database;
+    final db = await database;
 
-    var result = await db
+    final result = await db
         .rawDelete('DELETE FROM $personTable WHERE $personLogin = $login');
     return result;
   }

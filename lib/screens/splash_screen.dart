@@ -1,7 +1,6 @@
+import 'package:auth_app/auth/prerences.dart';
+import 'package:auth_app/utils/colors.dart';
 import 'package:flutter/material.dart';
-
-import '../auth/prerences.dart';
-import '../utils/colors.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -22,13 +21,13 @@ class SplashScreenState extends State<SplashScreen>
   }
 
   Future wait() async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future<dynamic>.delayed(const Duration(seconds: 2));
     isLoggedIn = await Preferences.getBool('Sign in', false);
 
     if (isLoggedIn) {
-      Navigator.pushNamed(context, '/MS');
+      await Navigator.pushNamed(context, '/MS');
     } else {
-      Navigator.pushNamed(context, '/LS');
+      await Navigator.pushNamed(context, '/LS');
     }
   }
 

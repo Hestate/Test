@@ -1,10 +1,9 @@
+import 'package:auth_app/pages/home_page.dart';
+import 'package:auth_app/pages/profile_page.dart';
+import 'package:auth_app/utils/colors.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../pages/home_page.dart';
-import '../pages/profile_page.dart';
-import '../utils/colors.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -35,21 +34,21 @@ class MainScreenState extends State<MainScreen> {
         title: const Text('Home Page'),
         leading: InkWell(
             onTap: () async {
-              SharedPreferences prefs = await SharedPreferences.getInstance();
-              prefs.setBool('Sign in', false);
-              prefs.setString('login', "");
-              Navigator.pushNamed(context, '/LS');
+              final prefs = await SharedPreferences.getInstance();
+              await prefs.setBool('Sign in', false);
+              await prefs.setString('login', '');
+              await Navigator.pushNamed(context, '/LS');
             },
             child: const Icon(
               Icons.logout,
               color: Colors.white,
-            )),
+            ),),
       ),
       body: pages[_page],
       bottomNavigationBar: CurvedNavigationBar(
         key: _bottomNavigationKey,
         index: 0,
-        height: 75.0,
+        height: 75,
         items: const <Widget>[
           Icon(
             Icons.home_outlined,

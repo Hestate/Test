@@ -1,7 +1,6 @@
+import 'package:auth_app/utils/colors.dart';
+import 'package:auth_app/utils/fonts.dart';
 import 'package:flutter/material.dart';
-
-import '../utils/colors.dart';
-import '../utils/fonts.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);

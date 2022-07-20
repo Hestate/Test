@@ -1,33 +1,36 @@
-validateLogin(String value) {
+String? validateLogin(String value) {
   if (value.isEmpty) {
-    return "Please enter your login.";
+    return 'Please enter your login.';
   }
+  return null;
 }
 
-validateEmail(String value) {
+String? validateEmail(String value) {
   if (value.isEmpty) {
-    return "Please enter your email.";
+    return 'Please enter your email.';
   }
 
   const emailPattern = r'[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$';
   final regEx = RegExp(emailPattern);
 
   if (!regEx.hasMatch(value)) {
-    return "Enter a valid email.";
+    return 'Enter a valid email.';
   }
+  return null;
 }
 
-validatePassword(String value) {
+String? validatePassword(String value) {
   if (value.isEmpty) {
-    return "Password is required.";
+    return 'Password is required.';
   }
-  String pattern =
+  const pattern =
       r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[,.<>?-_=+№%!@#$%^&*;:()/|\$&*~]).{8,}$';
-  RegExp regExp = RegExp(pattern);
+  final regExp = RegExp(pattern);
   if (value.length < 8) {
-    return "Password should atleast be of 8 characters.";
+    return 'Password should atleast be of 8 characters.';
   }
   if (!regExp.hasMatch(value)) {
-    return "Password must contain atleast 1 uppercase, 1 lowercase, 1 special and 1 numeric character.";
+    return 'Password must contain atleast 1 uppercase, 1 lowercase, 1 special and 1 numeric character.';
   }
+  return null;
 }
