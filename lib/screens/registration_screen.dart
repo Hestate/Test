@@ -158,13 +158,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                   PersonDatabaseHelper();
                               await person.initializeDatabase();
                               await person.insertPerson(personObject);
-                              ScaffoldMessenger.of(context).showSnackBar(
+                              if(mounted) {
+                                ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                   content:
                                       Text("You're sucsefully registered!"),
                                 ),
                               );
-                              await Navigator.pushNamed(context, '/LS');
+                              }
+                              if (mounted) {
+                                await Navigator.pushNamed(context, '/LS');
+                              }
                             }
                           },
                           child: Padding(

@@ -37,7 +37,9 @@ class MainScreenState extends State<MainScreen> {
               final prefs = await SharedPreferences.getInstance();
               await prefs.setBool('Sign in', false);
               await prefs.setString('login', '');
-              await Navigator.pushNamed(context, '/LS');
+              if (mounted) {
+                await Navigator.pushNamed(context, '/LS');
+              }
             },
             child: const Icon(
               Icons.logout,
@@ -47,8 +49,6 @@ class MainScreenState extends State<MainScreen> {
       body: pages[_page],
       bottomNavigationBar: CurvedNavigationBar(
         key: _bottomNavigationKey,
-        index: 0,
-        height: 75,
         items: const <Widget>[
           Icon(
             Icons.home_outlined,

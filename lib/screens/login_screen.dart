@@ -131,14 +131,18 @@ class _LoginScreenState extends State<LoginScreen> {
                                 final prefs =
                                     await SharedPreferences.getInstance();
                                 await prefs.setBool('Sign in', true);
-                                await Navigator.pushNamed(context, '/MS');
+                                if (mounted) {
+                                  await Navigator.pushNamed(context, '/MS');
+                                }
                               } else {
-                                ScaffoldMessenger.of(context).showSnackBar(
+                                if (mounted) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
                                     content:
                                         Text('User not found. Please sign up.'),
                                   ),
                                 );
+                                }
                               }
                             }
                           },

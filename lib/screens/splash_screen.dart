@@ -25,9 +25,13 @@ class SplashScreenState extends State<SplashScreen>
     isLoggedIn = await Preferences.getBool('Sign in', false);
 
     if (isLoggedIn) {
-      await Navigator.pushNamed(context, '/MS');
+      if(mounted) {
+        await Navigator.pushNamed(context, '/MS');
+      }
     } else {
-      await Navigator.pushNamed(context, '/LS');
+      if(mounted) {
+        await Navigator.pushNamed(context, '/LS');
+      }
     }
   }
 
