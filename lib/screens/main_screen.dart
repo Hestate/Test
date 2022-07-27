@@ -21,6 +21,7 @@ class MainScreenState extends State<MainScreen> {
     const ProfilePage(),
   ];
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+  
   final screens = [
     const HomePage(),
     const ProfilePage(),

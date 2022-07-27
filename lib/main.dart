@@ -1,8 +1,10 @@
+import 'package:auth_app/repository/home_repository.dart';
 import 'package:auth_app/screens/login_screen.dart';
 import 'package:auth_app/screens/main_screen.dart';
 import 'package:auth_app/screens/registration_screen.dart';
 import 'package:auth_app/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
@@ -18,16 +20,19 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Test',
-          initialRoute: '/SS',
-          routes: {
-            '/SS': (context) => const SplashScreen(),
-            '/LS': (context) => const LoginScreen(),
-            '/RS': (context) => const RegistrationScreen(),
-            '/MS': (context) => const MainScreen(),
-          },
+        return RepositoryProvider(
+          create: (_) => QuotesRepository(),
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Test',
+            initialRoute: '/SS',
+            routes: {
+              '/SS': (context) => const SplashScreen(),
+              '/LS': (context) => const LoginScreen(),
+              '/RS': (context) => const RegistrationScreen(),
+              '/MS': (context) => const MainScreen(),
+            },
+          ),
         );
       },
     );

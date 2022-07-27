@@ -1,4 +1,3 @@
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Preferences {
@@ -22,12 +21,12 @@ class Preferences {
     return prefs.getString(key) ?? value ?? '';
   }
 
-  static Future<Future<bool>> setBool(String key, bool value) async {
+  static Future<Future<bool>> setBool(String key, {required bool value}) async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.setBool(key, value);
   }
 
-  static Future<bool> getBool(String key, bool value) async {
+  static Future<bool> getBool(String key, {required bool value}) async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getBool(key) ?? value;
   }

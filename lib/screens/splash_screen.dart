@@ -22,7 +22,7 @@ class SplashScreenState extends State<SplashScreen>
 
   Future wait() async {
     await Future<dynamic>.delayed(const Duration(seconds: 2));
-    isLoggedIn = await Preferences.getBool('Sign in', false);
+    isLoggedIn = await Preferences.getBool('Sign in', value: false);
 
     if (isLoggedIn) {
       if(mounted) {
