@@ -1,5 +1,5 @@
 import 'package:auth_app/auth/person_database_helper.dart';
-import 'package:auth_app/user/person_model.dart';
+import 'package:auth_app/models/person_model.dart';
 
 Future<bool> checkCredentials(String login, String password) async {
   var value = false;

@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:auth_app/user/person_model.dart';
+import 'package:auth_app/models/person_model.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 

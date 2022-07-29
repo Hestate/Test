@@ -1,6 +1,6 @@
 import 'package:auth_app/auth/person_database_helper.dart';
 import 'package:auth_app/auth/validation_functions.dart';
-import 'package:auth_app/user/person_model.dart';
+import 'package:auth_app/models/person_model.dart';
 import 'package:auth_app/utils/colors.dart';
 import 'package:auth_app/utils/decorations.dart';
 import 'package:auth_app/utils/fonts.dart';
