@@ -19,10 +19,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
   TextEditingController confirmPassController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final node = FocusScope.of(context);
+
+    final now = DateTime.now();
+    final convertedDateTime = '${now.hour}:${now.minute}';
 
     return Scaffold(
       backgroundColor: AppColors.grey300,
@@ -149,22 +153,23 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               debugPrint('Login: ${loginController.text}');
                               debugPrint('Email: ${emailController.text}');
                               debugPrint('Password: ${passController.text}');
+                              debugPrint('Date: $convertedDateTime');
                               final personObject = Person(
                                 loginController.text,
                                 emailController.text,
                                 passController.text,
+                                convertedDateTime,
                               );
-                              final person =
-                                  PersonDatabaseHelper();
+                              final person = PersonDatabaseHelper();
                               await person.initializeDatabase();
                               await person.insertPerson(personObject);
-                              if(mounted) {
+                              if (mounted) {
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content:
-                                      Text("You're sucsefully registered!"),
-                                ),
-                              );
+                                  const SnackBar(
+                                    content:
+                                        Text("You're sucsefully registered!"),
+                                  ),
+                                );
                               }
                               if (mounted) {
                                 await Navigator.pushNamed(context, '/LS');

@@ -4,8 +4,6 @@ import 'package:auth_app/models/person_model.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
-
-
 class PersonDatabaseHelper {
   factory PersonDatabaseHelper() {
     //initializing the object
@@ -23,6 +21,7 @@ class PersonDatabaseHelper {
   String personLogin = 'login';
   String personEmail = 'email';
   String personPassword = 'password';
+  String personDate = 'date';
 
   // Getter for our database
   Future<Database> get database async {
@@ -52,7 +51,8 @@ class PersonDatabaseHelper {
   Future<void> _createDb(Database db, int newVersion) async {
     if (_database == null) {
       await db.execute(
-          'CREATE TABLE personsTable ($personLogin TEXT PRIMARY KEY, $personEmail TEXT, $personPassword VARCHAR)',);
+        'CREATE TABLE personsTable ($personLogin TEXT PRIMARY KEY, $personEmail TEXT, $personPassword VARCHAR, $personDate INTEGER)',
+      );
     }
   }
 
@@ -63,7 +63,8 @@ class PersonDatabaseHelper {
     final db = await database;
 
     final result = await db.rawQuery(
-        "SELECT * FROM $personTable WHERE $personLogin = '$login' ",);
+      "SELECT * FROM $personTable WHERE $personLogin = '$login' ",
+    );
     return result;
   }
 
@@ -80,8 +81,12 @@ class PersonDatabaseHelper {
     final db = await database;
 
     //var result = await db.rawUpdate(sql)
-    final result = await db.update(personTable, person.toMap(),
-        where: '$personLogin = ?', whereArgs: [person.login],);
+    final result = await db.update(
+      personTable,
+      person.toMap(),
+      where: '$personLogin = ?',
+      whereArgs: [person.login],
+    );
     return result;
   }
 

@@ -25,6 +25,8 @@ Future<bool> checkCredentials(String login, String password) async {
 String? login;
 String? email;
 String? password;
+String? date;
+
 Future<List<Person>> getList(List<Person> listPerson) async {
   final person = PersonDatabaseHelper();
   final info = await person.getPerson(login!);
@@ -56,6 +58,8 @@ Future<List<String>> getInfoList(String login) async {
     personInfoList.add(email!);
     password = element.password;
     personInfoList.add(password!);
+    date = element.date;
+    personInfoList.add(date!);
   }
 
   return personInfoList;
