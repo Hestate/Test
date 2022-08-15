@@ -128,6 +128,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                 passwordController.text,
                               );
                               if (credentialExists) {
+                                List<String> person = await getPersonList(
+                                    loginController.text.toString());
+                                print(person);
                                 final prefs =
                                     await SharedPreferences.getInstance();
                                 await prefs.setBool('Sign in', true);
@@ -137,11 +140,11 @@ class _LoginScreenState extends State<LoginScreen> {
                               } else {
                                 if (mounted) {
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content:
-                                        Text('User not found. Please sign up.'),
-                                  ),
-                                );
+                                    const SnackBar(
+                                      content: Text(
+                                          'User not found. Please sign up.'),
+                                    ),
+                                  );
                                 }
                               }
                             }

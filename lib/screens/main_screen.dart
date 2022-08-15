@@ -1,3 +1,4 @@
+import 'package:auth_app/auth/authentication_functions.dart';
 import 'package:auth_app/pages/home_page.dart';
 import 'package:auth_app/pages/profile_page.dart';
 import 'package:auth_app/utils/colors.dart';
@@ -8,24 +9,27 @@ import 'package:shared_preferences/shared_preferences.dart';
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
 
-
   @override
   MainScreenState createState() => MainScreenState();
 }
 
 class MainScreenState extends State<MainScreen> {
   int _page = 0;
-
-  List<Widget> pages = [
-    const HomePage(),
-    const ProfilePage(),
-  ];
-  final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   
-  final screens = [
-    const HomePage(),
-    const ProfilePage(),
-  ];
+
+    List<Widget> pages = [
+      const HomePage(),
+      ProfilePage(dataList: [],),
+    ];
+    final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey =
+        GlobalKey();
+
+    final screens = [
+      const HomePage(),
+      ProfilePage(dataList: [],),
+    ];
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,18 +38,19 @@ class MainScreenState extends State<MainScreen> {
         backgroundColor: AppColors.deepPurple,
         title: const Text('Home Page'),
         leading: InkWell(
-            onTap: () async {
-              final prefs = await SharedPreferences.getInstance();
-              await prefs.setBool('Sign in', false);
-              await prefs.setString('login', '');
-              if (mounted) {
-                await Navigator.pushNamed(context, '/LS');
-              }
-            },
-            child: const Icon(
-              Icons.logout,
-              color: Colors.white,
-            ),),
+          onTap: () async {
+            final prefs = await SharedPreferences.getInstance();
+            await prefs.setBool('Sign in', false);
+            await prefs.setString('login', '');
+            if (mounted) {
+              await Navigator.pushNamed(context, '/LS');
+            }
+          },
+          child: const Icon(
+            Icons.logout,
+            color: Colors.white,
+          ),
+        ),
       ),
       body: pages[_page],
       bottomNavigationBar: CurvedNavigationBar(

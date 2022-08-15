@@ -1,10 +1,46 @@
+import 'package:auth_app/auth/authentication_functions.dart';
 import 'package:auth_app/utils/colors.dart';
 import 'package:auth_app/utils/decorations.dart';
 import 'package:auth_app/utils/fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({Key? key, required this.dataList}) : super(key: key);
+  final List<String> dataList;
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+@override
+void initState() {
+  wait();
+}
+
+Future wait() async {
+  final prefs = await SharedPreferences.getInstance();
+
+  final login = prefs.getString('login');
+
+  final dataList = await getPersonList(login.toString());
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  String? login;
+  String? email;
+  String? password;
+  String? date;
+
+  @override
+  void initState() {
+    super.initState();
+
+    login = widget.dataList.isEmpty ? 'login' : widget.dataList[0];
+    email = widget.dataList.isEmpty ? 'email' : widget.dataList[1];
+    password = widget.dataList.isEmpty ? 'password' : widget.dataList[2];
+    date = widget.dataList.isEmpty ? 'date' : widget.dataList[3];
+  }
 
   @override
   Widget build(BuildContext context) {
