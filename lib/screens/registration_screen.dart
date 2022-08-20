@@ -248,7 +248,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     final now = DateTime.now();
     final convertedDateTime = '${now.hour}:${now.minute}';
     print(
-        'Full name $_nickname and Email: $_email and Password $_password and Date: $convertedDateTime');
+        'Nickname: $_nickname, Email: $_email, Password $_password and Date: $convertedDateTime');
     add(
       nickname: _nickname,
       email: _email,

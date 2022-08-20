@@ -1,10 +1,10 @@
-import 'package:auth_app/auth/authentication_functions.dart';
 import 'package:auth_app/auth/validation_functions.dart';
+import 'package:auth_app/models/user.dart';
 import 'package:auth_app/utils/colors.dart';
 import 'package:auth_app/utils/decorations.dart';
 import 'package:auth_app/utils/fonts.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -16,8 +16,32 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool _obscureText = true;
   final _formKey = GlobalKey<FormState>();
-  TextEditingController nicknameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  late String _email = '', _password = '';
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  User loginUser = User(nickname: '', email: '', password: '', date: '');
+
+  @override
+  void initState() {
+    super.initState();
+    _emailController.addListener(_setText);
+    _passwordController.addListener(_setText);
+  }
+
+  void _setText() {
+    setState(() {
+      _email = _emailController.text;
+      _password = _passwordController.text;
+    });
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,10 +79,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Padding(
                               padding: const EdgeInsets.only(left: 10),
                               child: TextFormField(
-                                controller: nicknameController,
+                                controller: _emailController,
                                 decoration: const InputDecoration(
                                   border: InputBorder.none,
-                                  hintText: 'Nickname',
+                                  hintText: 'Email',
                                 ),
                                 validator: (value) {
                                   return validateLogin(value!);
@@ -76,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Padding(
                               padding: const EdgeInsets.only(left: 10),
                               child: TextFormField(
-                                controller: passwordController,
+                                controller: _passwordController,
                                 obscureText: _obscureText,
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
@@ -134,32 +158,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         const Spacer(),
                         GestureDetector(
-                          onTap: () async {
-                            if (_formKey.currentState!.validate()) {
-                              final credentialExists = await checkCredentials(
-                                nicknameController.text,
-                                passwordController.text,
-                              );
-                              if (credentialExists) {
-                                List<String> person = await getPersonList(
-                                    nicknameController.text.toString());
-                                print(person);
-                                final prefs =
-                                    await SharedPreferences.getInstance();
-                                await prefs.setBool('Sign in', true);
-                                if (mounted) {
-                                  await Navigator.pushNamed(context, '/MS');
-                                }
-                              } else {
-                                if (mounted) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content: Text(
-                                          'User not found. Please sign up.'),
-                                    ),
-                                  );
-                                }
-                              }
+                          onTap: () {
+                            final form = _formKey.currentState;
+                            if (form!.validate()) {
+                              form.save();
+                              signInButton();
                             }
                           },
                           child: Padding(
@@ -208,5 +211,49 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  void signInButton() {
+    print('Email: $_email and Password: $_password');
+    login(email: _email, password: _password);
+  }
+
+  Future<Object> login({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final usersBox = await Hive.openBox('users');
+
+      final users = usersBox.values
+          .where((user) =>
+              (user.email.contains(email) && user.password.contains(password)))
+          .toList();
+
+      for (final user in users) {
+        loginUser = User(
+          nickname: user.nickname.toString(),
+          email: user.email.toString(),
+          password: user.password.toString(),
+          date: user.date.toString(),
+        );
+      }
+
+      if (users.isNotEmpty) {
+        return Navigator.pushNamed(context, '/MS');
+      } else {
+        return ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('User not found!'),
+          ),
+        );
+      }
+    } on Exception catch (error) {
+      return ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('something wrong! \n $error'),
+        ),
+      );
+    }
   }
 }
