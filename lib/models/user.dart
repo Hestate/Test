@@ -5,7 +5,7 @@ part 'user.g.dart';
 @HiveType(typeId: 1)
 class User {
   @HiveField(0, defaultValue: '')
-  String nickName;
+  String nickname;
 
   @HiveField(1, defaultValue: '')
   String email;
@@ -17,7 +17,7 @@ class User {
   String date;
 
   User({
-    required this.nickName,
+    required this.nickname,
     required this.email,
     required this.password,
     required this.date,

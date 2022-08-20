@@ -1,10 +1,12 @@
 import 'package:auth_app/auth/person_database_helper.dart';
 import 'package:auth_app/auth/validation_functions.dart';
 import 'package:auth_app/models/person_model.dart';
+import 'package:auth_app/models/user.dart';
 import 'package:auth_app/utils/colors.dart';
 import 'package:auth_app/utils/decorations.dart';
 import 'package:auth_app/utils/fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -16,18 +18,33 @@ class RegistrationScreen extends StatefulWidget {
 class _RegistrationScreenState extends State<RegistrationScreen> {
   bool _obscureText = true;
   final _formKey = GlobalKey<FormState>();
-  TextEditingController nicknameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passController = TextEditingController();
-  TextEditingController confirmPassController = TextEditingController();
-  TextEditingController dateController = TextEditingController();
+  late String _nickname = '', _email = '', _password = '';
+  late User _currentUser;
+  final TextEditingController _nicknameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _nicknameController.addListener(_setText);
+    _emailController.addListener(_setText);
+    _passwordController.addListener(_setText);
+  }
+
+  void _setText() {
+    setState(() {
+      _nickname = _nicknameController.text;
+      _email = _emailController.text;
+      _password = _passwordController.text;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final node = FocusScope.of(context);
-
-    final now = DateTime.now();
-    final convertedDateTime = '${now.hour}:${now.minute}';
 
     return Scaffold(
       backgroundColor: AppColors.grey300,
@@ -61,7 +78,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             child: Padding(
                               padding: const EdgeInsets.only(left: 10),
                               child: TextFormField(
-                                controller: nicknameController,
+                                controller: _nicknameController,
                                 decoration: const InputDecoration(
                                   border: InputBorder.none,
                                   hintText: 'Nickname',
@@ -82,7 +99,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             child: Padding(
                               padding: const EdgeInsets.only(left: 10),
                               child: TextFormField(
-                                controller: emailController,
+                                controller: _emailController,
                                 decoration: const InputDecoration(
                                   border: InputBorder.none,
                                   hintText: 'Email',
@@ -103,7 +120,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             child: Padding(
                               padding: const EdgeInsets.only(left: 10),
                               child: TextFormField(
-                                controller: passController,
+                                controller: _passwordController,
                                 obscureText: _obscureText,
                                 decoration: InputDecoration(
                                   errorMaxLines: 3,
@@ -138,7 +155,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             child: Padding(
                               padding: const EdgeInsets.only(left: 10),
                               child: TextFormField(
-                                controller: confirmPassController,
+                                controller: _confirmPasswordController,
                                 obscureText: _obscureText,
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
@@ -160,7 +177,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                   if (value!.isEmpty) {
                                     return 'Password is required.';
                                   }
-                                  if (value != passController.value.text) {
+                                  if (value != _passwordController.value.text) {
                                     return 'Password do not match.';
                                   }
                                   return null;
@@ -172,33 +189,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         ),
                         const Spacer(),
                         GestureDetector(
-                          onTap: () async {
-                            if (_formKey.currentState!.validate()) {
-                              debugPrint('Details are validated!!');
-                              debugPrint('Login: ${nicknameController.text}');
-                              debugPrint('Email: ${emailController.text}');
-                              debugPrint('Password: ${passController.text}');
-                              debugPrint('Date: $convertedDateTime');
-                              final personObject = Person(
-                                nicknameController.text,
-                                emailController.text,
-                                passController.text,
-                                convertedDateTime,
-                              );
-                              final person = PersonDatabaseHelper();
-                              await person.initializeDatabase();
-                              await person.insertPerson(personObject);
-                              if (mounted) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content:
-                                        Text("You're sucsefully registered!"),
-                                  ),
-                                );
-                              }
-                              if (mounted) {
-                                await Navigator.pushNamed(context, '/LS');
-                              }
+                          onTap: () {
+                            final form = _formKey.currentState;
+                            if (form!.validate()) {
+                              form.save();
+                              signUpButton();
                             }
                           },
                           child: Padding(
@@ -247,5 +242,62 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ),
       ),
     );
+  }
+
+  void signUpButton() {
+    final now = DateTime.now();
+    final convertedDateTime = '${now.hour}:${now.minute}';
+    print(
+        'Full name $_nickname and Email: $_email and Password $_password and Date: $convertedDateTime');
+    add(
+      nickname: _nickname,
+      email: _email,
+      password: _password,
+      date: convertedDateTime,
+    );
+  }
+
+  Future<Object> add({
+    required String nickname,
+    required String email,
+    required String password,
+    required String date,
+  }) async {
+    try {
+      final usersBox = await Hive.openBox('users');
+      final user = User(
+        nickname: nickname,
+        email: email,
+        password: password,
+        date: date,
+      );
+
+      final userExist = usersBox.values
+          .where((user) => (user.email.contains(email)))
+          .toList();
+
+      if (userExist.isEmpty) {
+        await usersBox.add(user);
+        _currentUser = user;
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("You're sucsefully registered!"),
+          ),
+        );
+        return Navigator.pushNamed(context, '/LS');
+      } else {
+        return ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('User "$email" already exists.'),
+          ),
+        );
+      }
+    } on Exception catch (error) {
+      return ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('something wrong! \n $error'),
+        ),
+      );
+    }
   }
 }
