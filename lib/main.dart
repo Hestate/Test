@@ -1,3 +1,4 @@
+import 'package:auth_app/models/user.dart';
 import 'package:auth_app/repository/home_repository.dart';
 import 'package:auth_app/screens/login_screen.dart';
 import 'package:auth_app/screens/main_screen.dart';
@@ -6,8 +7,11 @@ import 'package:auth_app/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(UserAdapter());
   runApp(const MyApp());
 }
 

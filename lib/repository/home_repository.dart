@@ -1,4 +1,4 @@
-import 'package:auth_app/models/quote_model.dart';
+import 'package:auth_app/models/quote.dart';
 import 'package:auth_app/network/network_helper.dart';
 import 'package:auth_app/network/network_service.dart';
 

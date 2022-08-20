@@ -1,7 +1,7 @@
 import 'package:auth_app/bloc/home_api_bloc.dart';
 import 'package:auth_app/bloc/home_api_event.dart';
 import 'package:auth_app/bloc/home_api_state.dart';
-import 'package:auth_app/models/quote_model.dart';
+import 'package:auth_app/models/quote.dart';
 import 'package:auth_app/repository/home_repository.dart';
 import 'package:auth_app/utils/colors.dart';
 import 'package:flutter/material.dart';
