@@ -5,6 +5,7 @@ import 'package:auth_app/utils/decorations.dart';
 import 'package:auth_app/utils/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -240,6 +241,8 @@ class _LoginScreenState extends State<LoginScreen> {
       }
 
       if (users.isNotEmpty) {
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setBool('Sign in', true);
         return Navigator.pushNamed(context, '/MS');
       } else {
         return ScaffoldMessenger.of(context).showSnackBar(

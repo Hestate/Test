@@ -1,4 +1,4 @@
-import 'package:auth_app/auth/authentication_functions.dart';
+import 'package:auth_app/models/user.dart';
 import 'package:auth_app/screens/pages/home_page.dart';
 import 'package:auth_app/screens/pages/profile_page.dart';
 import 'package:auth_app/utils/colors.dart';
@@ -13,22 +13,21 @@ class MainScreen extends StatefulWidget {
   MainScreenState createState() => MainScreenState();
 }
 
+User loginUser = User(nickname: '', email: '', password: '', date: '');
+
 class MainScreenState extends State<MainScreen> {
   int _page = 0;
-  
 
-    List<Widget> pages = [
-      const HomePage(),
-      ProfilePage(dataList: [],),
-    ];
-    final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey =
-        GlobalKey();
+  List<Widget> pages = [
+    const HomePage(),
+    ProfilePage(user: loginUser),
+  ];
+  final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
-    final screens = [
-      const HomePage(),
-      ProfilePage(dataList: [],),
-    ];
-  
+  final screens = [
+    const HomePage(),
+    ProfilePage(user: loginUser),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +40,6 @@ class MainScreenState extends State<MainScreen> {
           onTap: () async {
             final prefs = await SharedPreferences.getInstance();
             await prefs.setBool('Sign in', false);
-            await prefs.setString('login', '');
             if (mounted) {
               await Navigator.pushNamed(context, '/LS');
             }
