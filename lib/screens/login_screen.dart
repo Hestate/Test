@@ -14,8 +14,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool _obscureText = true;
   final _formKey = GlobalKey<FormState>();
-  TextEditingController loginController = TextEditingController();
+  TextEditingController nicknameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   @override
@@ -54,10 +55,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Padding(
                               padding: const EdgeInsets.only(left: 10),
                               child: TextFormField(
-                                controller: loginController,
+                                controller: nicknameController,
                                 decoration: const InputDecoration(
                                   border: InputBorder.none,
-                                  hintText: 'Login',
+                                  hintText: 'Nickname',
                                 ),
                                 validator: (value) {
                                   return validateLogin(value!);
@@ -76,9 +77,21 @@ class _LoginScreenState extends State<LoginScreen> {
                               padding: const EdgeInsets.only(left: 10),
                               child: TextFormField(
                                 controller: passwordController,
-                                obscureText: true,
-                                decoration: const InputDecoration(
+                                obscureText: _obscureText,
+                                decoration: InputDecoration(
                                   border: InputBorder.none,
+                                  suffixIcon: GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        _obscureText = !_obscureText;
+                                      });
+                                    },
+                                    child: Icon(
+                                      _obscureText
+                                          ? Icons.visibility_outlined
+                                          : Icons.visibility_off_outlined,
+                                    ),
+                                  ),
                                   hintText: 'Password',
                                 ),
                                 validator: (value) {
@@ -124,12 +137,12 @@ class _LoginScreenState extends State<LoginScreen> {
                           onTap: () async {
                             if (_formKey.currentState!.validate()) {
                               final credentialExists = await checkCredentials(
-                                loginController.text,
+                                nicknameController.text,
                                 passwordController.text,
                               );
                               if (credentialExists) {
                                 List<String> person = await getPersonList(
-                                    loginController.text.toString());
+                                    nicknameController.text.toString());
                                 print(person);
                                 final prefs =
                                     await SharedPreferences.getInstance();

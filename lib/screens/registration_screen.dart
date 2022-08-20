@@ -14,8 +14,9 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+  bool _obscureText = true;
   final _formKey = GlobalKey<FormState>();
-  TextEditingController loginController = TextEditingController();
+  TextEditingController nicknameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
   TextEditingController confirmPassController = TextEditingController();
@@ -60,10 +61,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             child: Padding(
                               padding: const EdgeInsets.only(left: 10),
                               child: TextFormField(
-                                controller: loginController,
+                                controller: nicknameController,
                                 decoration: const InputDecoration(
                                   border: InputBorder.none,
-                                  hintText: 'Login',
+                                  hintText: 'Nickname',
                                 ),
                                 validator: (value) {
                                   return validateLogin(value!);
@@ -103,10 +104,22 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               padding: const EdgeInsets.only(left: 10),
                               child: TextFormField(
                                 controller: passController,
-                                obscureText: true,
-                                decoration: const InputDecoration(
+                                obscureText: _obscureText,
+                                decoration: InputDecoration(
                                   errorMaxLines: 3,
                                   border: InputBorder.none,
+                                  suffixIcon: GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        _obscureText = !_obscureText;
+                                      });
+                                    },
+                                    child: Icon(
+                                      _obscureText
+                                          ? Icons.visibility_outlined
+                                          : Icons.visibility_off_outlined,
+                                    ),
+                                  ),
                                   hintText: 'Password',
                                 ),
                                 validator: (value) {
@@ -126,9 +139,21 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               padding: const EdgeInsets.only(left: 10),
                               child: TextFormField(
                                 controller: confirmPassController,
-                                obscureText: true,
-                                decoration: const InputDecoration(
+                                obscureText: _obscureText,
+                                decoration: InputDecoration(
                                   border: InputBorder.none,
+                                  suffixIcon: GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        _obscureText = !_obscureText;
+                                      });
+                                    },
+                                    child: Icon(
+                                      _obscureText
+                                          ? Icons.visibility_outlined
+                                          : Icons.visibility_off_outlined,
+                                    ),
+                                  ),
                                   hintText: 'Confirm Password',
                                 ),
                                 validator: (value) {
@@ -150,12 +175,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           onTap: () async {
                             if (_formKey.currentState!.validate()) {
                               debugPrint('Details are validated!!');
-                              debugPrint('Login: ${loginController.text}');
+                              debugPrint('Login: ${nicknameController.text}');
                               debugPrint('Email: ${emailController.text}');
                               debugPrint('Password: ${passController.text}');
                               debugPrint('Date: $convertedDateTime');
                               final personObject = Person(
-                                loginController.text,
+                                nicknameController.text,
                                 emailController.text,
                                 passController.text,
                                 convertedDateTime,

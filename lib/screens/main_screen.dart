@@ -1,6 +1,6 @@
 import 'package:auth_app/auth/authentication_functions.dart';
-import 'package:auth_app/pages/home_page.dart';
-import 'package:auth_app/pages/profile_page.dart';
+import 'package:auth_app/screens/pages/home_page.dart';
+import 'package:auth_app/screens/pages/profile_page.dart';
 import 'package:auth_app/utils/colors.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
