@@ -16,8 +16,10 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool _obscureText = true;
+  bool isChecked = false;
   final _formKey = GlobalKey<FormState>();
   late String _email = '', _password = '';
+  late Box box1;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -128,6 +130,25 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         Padding(
+                          padding: const EdgeInsets.only(left: 25),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Checkbox(
+                                value: isChecked,
+                                onChanged: (value) {
+                                  isChecked = !isChecked;
+                                  setState(() {});
+                                },
+                              ),
+                              const Text(
+                                'Remember Me',
+                                style: TextStyle(color: AppColors.grey),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
                           padding: const EdgeInsets.fromLTRB(25, 10, 25, 0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -219,7 +240,7 @@ class _LoginScreenState extends State<LoginScreen> {
     login(email: _email, password: _password);
   }
 
-  Future<Object> login({
+  Future login({
     required String email,
     required String password,
   }) async {

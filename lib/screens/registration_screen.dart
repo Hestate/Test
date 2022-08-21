@@ -255,7 +255,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
   }
 
-  Future<Object> add({
+  Future add({
     required String nickname,
     required String email,
     required String password,
